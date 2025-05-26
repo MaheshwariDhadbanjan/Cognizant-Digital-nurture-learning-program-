@@ -1,0 +1,15 @@
+fetch("mock-api/events.json")
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(err => console.error(err));
+
+async function fetchEvents() {
+  console.log("Loading...");
+  try {
+    const res = await fetch("mock-api/events.json");
+    const data = await res.json();
+    console.log(data);
+  } catch (err) {
+    console.error(err);
+  }
+}
