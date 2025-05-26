@@ -1,0 +1,38 @@
+public class PatternMatchingSwitch {
+    public static void main(String[] args) {
+        Object obj = "Hello";
+
+        switch (obj) {
+            case Integer i -> System.out.println("Integer: " + i);
+            case String s -> System.out.println("String: " + s);
+            case Double d -> System.out.println("Double: " + d);
+            default -> System.out.println("Unknown type");
+        }
+    }
+}
+
+
+
+import java.sql.*;
+
+public class JDBCConnectionExample {
+    public static void main(String[] args) {
+        String url = "jdbc:mysql://localhost:3306/testdb";
+        String user = "root";
+        String password = "your_password";
+
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM students")) {
+
+            while (rs.next()) {
+                System.out.println(rs.getInt("id") + ": " + rs.getString("name"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
