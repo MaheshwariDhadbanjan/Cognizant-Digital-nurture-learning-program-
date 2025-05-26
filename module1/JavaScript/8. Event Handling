@@ -1,0 +1,17 @@
+document.querySelectorAll(".registerBtn").forEach(btn =>
+  btn.onclick = () => alert("Registered!")
+);
+
+document.querySelector("#categorySelect").onchange = (e) => {
+  const selected = e.target.value;
+  const filtered = filterEventsByCategory(events, selected);
+  console.log(filtered);
+};
+
+document.querySelector("#searchInput").onkeydown = (e) => {
+  if (e.key === "Enter") {
+    const query = e.target.value.toLowerCase();
+    const results = events.filter(ev => ev.name.toLowerCase().includes(query));
+    console.log(results);
+  }
+};
