@@ -1,0 +1,15 @@
+SELECT event_id,
+       SUM(resource_type = 'pdf') AS pdf_count,
+       SUM(resource_type = 'image') AS image_count,
+       SUM(resource_type = 'link') AS link_count
+FROM Resources
+GROUP BY event_id;
+
+
+
+
+SELECT u.full_name, e.title, f.rating, f.comments
+FROM Feedback f
+JOIN Users u ON f.user_id = u.user_id
+JOIN Events e ON f.event_id = e.event_id
+WHERE f.rating < 3;
