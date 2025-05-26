@@ -1,0 +1,7 @@
+const container = document.querySelector("#eventContainer");
+
+events.forEach(event => {
+  const card = document.createElement("div");
+  card.textContent = `${event.name} - ${event.category}`;
+  container.appendChild(card);
+});
