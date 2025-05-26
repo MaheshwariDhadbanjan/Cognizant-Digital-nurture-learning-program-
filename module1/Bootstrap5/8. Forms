@@ -10,3 +10,11 @@
     <label class="form-check-label">Accept Terms</label>
   </div>
 </form>
+
+
+<form>
+  <div class="form-floating mb-3">
+    <input type="email" class="form-control" id="floatingEmail" placeholder="Email">
+    <label for="floatingEmail">Email</label>
+  </div>
+</form>
