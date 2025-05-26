@@ -1,0 +1,10 @@
+SELECT event_id,
+       AVG(TIMESTAMPDIFF(MINUTE, start_time, end_time)) AS avg_duration_mins
+FROM Sessions
+GROUP BY event_id;
+
+
+SELECT e.event_id, e.title
+FROM Events e
+LEFT JOIN Sessions s ON e.event_id = s.event_id
+WHERE s.session_id IS NULL;
