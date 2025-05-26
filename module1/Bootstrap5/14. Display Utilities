@@ -1,0 +1,4 @@
+<div class="d-none d-md-block">Visible only on md+</div>
+
+
+<div class="d-none d-md-block bg-light">Sidebar</div>
