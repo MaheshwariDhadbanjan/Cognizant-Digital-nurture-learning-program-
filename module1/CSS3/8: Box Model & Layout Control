@@ -1,0 +1,15 @@
+.eventCard {
+  border: 2px solid #ccc;
+  padding: 20px;
+  margin: 20px;
+  outline: 2px solid #007BFF;
+}
+
+/* Visibility comparison */
+.hidden {
+  visibility: hidden;
+}
+
+.none {
+  display: none;
+}
