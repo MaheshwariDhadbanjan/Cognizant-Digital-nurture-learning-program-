@@ -1,0 +1,353 @@
+import java.io.*;
+import java.util.*;
+import java.util.stream.*;
+import java.net.http.*;
+import java.net.*;
+import java.lang.reflect.*;
+
+public class CoreJavaExercises {
+
+    // 1. Hello World
+    static void helloWorld() {
+        System.out.println("Hello, World!");
+    }
+
+    // 2. Simple Calculator
+    static void simpleCalculator(Scanner sc) {
+        System.out.print("Enter two numbers: ");
+        double a = sc.nextDouble(), b = sc.nextDouble();
+        System.out.print("Choose operation (+ - * /): ");
+        char op = sc.next().charAt(0);
+        switch (op) {
+            case '+': System.out.println("Result: " + (a + b)); break;
+            case '-': System.out.println("Result: " + (a - b)); break;
+            case '*': System.out.println("Result: " + (a * b)); break;
+            case '/': System.out.println("Result: " + (b != 0 ? a / b : "Divide by zero")); break;
+            default: System.out.println("Invalid operation");
+        }
+    }
+
+    // 3. Even or Odd
+    static void evenOddChecker(Scanner sc) {
+        System.out.print("Enter number: ");
+        int num = sc.nextInt();
+        System.out.println(num % 2 == 0 ? "Even" : "Odd");
+    }
+
+    // 4. Leap Year
+    static void leapYearChecker(Scanner sc) {
+        System.out.print("Enter year: ");
+        int y = sc.nextInt();
+        boolean leap = (y % 4 == 0 && y % 100 != 0) || (y % 400 == 0);
+        System.out.println(leap ? "Leap year" : "Not a leap year");
+    }
+
+    // 5. Multiplication Table
+    static void multiplicationTable(Scanner sc) {
+        System.out.print("Enter number: ");
+        int num = sc.nextInt();
+        for (int i = 1; i <= 10; i++)
+            System.out.println(num + " x " + i + " = " + (num * i));
+    }
+
+    // 6. Data Type Demo
+    static void dataTypeDemo() {
+        int i = 10; float f = 3.14f; double d = 2.718; char c = 'A'; boolean b = true;
+        System.out.println("int: " + i + ", float: " + f + ", double: " + d + ", char: " + c + ", boolean: " + b);
+    }
+
+    // 7. Type Casting
+    static void typeCastingExample() {
+        double d = 9.99;
+        int i = (int) d;
+        System.out.println("double to int: " + i);
+        int x = 5;
+        double y = (double) x;
+        System.out.println("int to double: " + y);
+    }
+
+    // 8. Operator Precedence
+    static void operatorPrecedence() {
+        int result = 10 + 5 * 2;
+        System.out.println("10 + 5 * 2 = " + result);
+    }
+
+    // 9. Grade Calculator
+    static void gradeCalculator(Scanner sc) {
+        System.out.print("Enter marks: ");
+        int marks = sc.nextInt();
+        char grade = marks >= 90 ? 'A' : marks >= 80 ? 'B' : marks >= 70 ? 'C' : marks >= 60 ? 'D' : 'F';
+        System.out.println("Grade: " + grade);
+    }
+
+    // 10. Number Guessing Game
+    static void numberGuessingGame(Scanner sc) {
+        int target = new Random().nextInt(100) + 1, guess;
+        do {
+            System.out.print("Guess number: ");
+            guess = sc.nextInt();
+            if (guess < target) System.out.println("Too low");
+            else if (guess > target) System.out.println("Too high");
+        } while (guess != target);
+        System.out.println("Correct!");
+    }
+
+    // 11. Factorial
+    static void factorial(Scanner sc) {
+        System.out.print("Enter number: ");
+        int n = sc.nextInt();
+        long fact = 1;
+        for (int i = 2; i <= n; i++) fact *= i;
+        System.out.println("Factorial: " + fact);
+    }
+
+    // 12. Method Overloading
+    static int add(int a, int b) { return a + b; }
+    static double add(double a, double b) { return a + b; }
+    static int add(int a, int b, int c) { return a + b + c; }
+
+    // 13. Recursive Fibonacci
+    static int fibonacci(int n) {
+        if (n <= 1) return n;
+        return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+
+    // 14. Array Sum & Avg
+    static void arraySumAverage(Scanner sc) {
+        System.out.print("Enter number of elements: ");
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        int sum = 0;
+        System.out.println("Enter elements:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+            sum += arr[i];
+        }
+        System.out.println("Sum: " + sum + ", Avg: " + (sum / (double) n));
+    }
+
+    // 15. String Reversal
+    static void stringReverse(Scanner sc) {
+        System.out.print("Enter string: ");
+        String s = sc.next();
+        System.out.println("Reversed: " + new StringBuilder(s).reverse());
+    }
+
+    // 16. Palindrome Checker
+    static void palindromeChecker(Scanner sc) {
+        System.out.print("Enter string: ");
+        String input = sc.next().replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+        System.out.println(input.equals(new StringBuilder(input).reverse().toString()) ? "Palindrome" : "Not palindrome");
+    }
+
+    // 17. Class and Object
+    static class Car {
+        String make, model; int year;
+        Car(String make, String model, int year) { this.make = make; this.model = model; this.year = year; }
+        void displayDetails() { System.out.println(year + " " + make + " " + model); }
+    }
+
+    // 18. Inheritance
+    static class Animal { void makeSound() { System.out.println("Some sound"); } }
+    static class Dog extends Animal { void makeSound() { System.out.println("Bark"); } }
+
+    // 19. Interface Example
+    interface Playable { void play(); }
+    static class Guitar implements Playable { public void play() { System.out.println("Guitar plays"); } }
+    static class Piano implements Playable { public void play() { System.out.println("Piano plays"); } }
+
+    // 20. Try-Catch
+    static void tryCatchExample(Scanner sc) {
+        try {
+            System.out.print("Enter two integers: ");
+            int a = sc.nextInt(), b = sc.nextInt();
+            System.out.println("Result: " + (a / b));
+        } catch (ArithmeticException e) {
+            System.out.println("Error: Division by zero");
+        }
+    }
+
+    // 21. Custom Exception
+    static class InvalidAgeException extends Exception {
+        InvalidAgeException(String msg) { super(msg); }
+    }
+    static void customException(Scanner sc) {
+        System.out.print("Enter age: ");
+        int age = sc.nextInt();
+        try {
+            if (age < 18) throw new InvalidAgeException("Age < 18 not allowed");
+            System.out.println("Valid age");
+        } catch (InvalidAgeException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    // 22. File Writing
+    static void fileWrite(Scanner sc) throws IOException {
+        System.out.print("Enter text: ");
+        sc.nextLine(); // consume leftover newline
+        String data = sc.nextLine();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt"))) {
+            writer.write(data);
+            System.out.println("Data written to output.txt");
+        }
+    }
+
+    // 23. File Reading
+    static void fileRead() throws IOException {
+        try (BufferedReader reader = new BufferedReader(new FileReader("output.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) System.out.println(line);
+        }
+    }
+
+
+    // 24. ArrayList Example
+    static void arrayListExample(Scanner sc) {
+        List<String> students = new ArrayList<>();
+        System.out.println("Enter student names (type 'end' to finish):");
+        while (true) {
+            String name = sc.next();
+            if (name.equalsIgnoreCase("end")) break;
+            students.add(name);
+        }
+        System.out.println("Student Names: " + students);
+    }
+
+    // 25. HashMap Example
+    static void hashMapExample(Scanner sc) {
+        Map<Integer, String> map = new HashMap<>();
+        System.out.println("Enter ID and name (0 to stop):");
+        while (true) {
+            int id = sc.nextInt();
+            if (id == 0) break;
+            String name = sc.next();
+            map.put(id, name);
+        }
+        System.out.print("Enter ID to search: ");
+        int searchId = sc.nextInt();
+        System.out.println("Name: " + map.getOrDefault(searchId, "Not found"));
+    }
+
+    // 26. Thread Creation
+    static class MyThread extends Thread {
+        String msg;
+        MyThread(String msg) { this.msg = msg; }
+        public void run() {
+            for (int i = 0; i < 5; i++) System.out.println(msg);
+        }
+    }
+    static void threadExample() {
+        new MyThread("Hello").start();
+        new MyThread("World").start();
+    }
+
+    // 27. Lambda Expressions
+    static void lambdaExample() {
+        List<String> names = Arrays.asList("Zoe", "Alice", "Bob");
+        Collections.sort(names, (a, b) -> a.compareToIgnoreCase(b));
+        System.out.println("Sorted: " + names);
+    }
+
+    // 28. Stream API
+    static void streamAPIExample() {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        List<Integer> evens = numbers.stream().filter(n -> n % 2 == 0).collect(Collectors.toList());
+        System.out.println("Even numbers: " + evens);
+    }
+
+    // 29. Records (Java 16+)
+    record Person(String name, int age) {}
+    static void recordExample() {
+        List<Person> people = List.of(new Person("Alice", 25), new Person("Bob", 17));
+        people.stream().filter(p -> p.age() >= 18).forEach(System.out::println);
+    }
+
+    // 30. Pattern Matching for switch (Java 21)
+    static void patternSwitch(Object obj) {
+        switch (obj) {
+            case Integer i -> System.out.println("Integer: " + i);
+            case String s -> System.out.println("String: " + s);
+            case Double d -> System.out.println("Double: " + d);
+            default -> System.out.println("Unknown type");
+        }
+    }
+
+    // 31. Basic JDBC Connection (outline only)
+    static void jdbcConnectionExample() {
+        // Requires JDBC driver and DB setup
+        System.out.println("Connect to DB, execute SELECT and print results");
+    }
+
+    // 32. Insert and Update JDBC
+    static class StudentDAO {
+        void insertStudent(String name) {
+            System.out.println("Inserting student: " + name);
+        }
+        void updateStudent(int id, String name) {
+            System.out.println("Updating student ID " + id + " to " + name);
+        }
+    }
+
+    // 33. Transaction Handling JDBC
+    static void transactionExample() {
+        System.out.println("Begin transaction, debit one account, credit another, commit/rollback");
+    }
+
+    // 34. Java Modules
+    static void javaModulesExample() {
+        System.out.println("Create module-info.java in each module and link");
+    }
+
+    // 35. TCP Client-Server Chat (outline only)
+    static void tcpChatExample() {
+        System.out.println("Use ServerSocket and Socket with Input/OutputStreams");
+    }
+
+    // 36. HTTP Client API
+    static void httpClientExample() throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://api.github.com")).build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println("Status: " + response.statusCode());
+        System.out.println("Body: " + response.body());
+    }
+
+    // 37. javap to inspect bytecode (manual)
+    static void javapExample() {
+        System.out.println("Compile and use: javap -c ClassName");
+    }
+
+    // 38. Decompile .class
+    static void decompileExample() {
+        System.out.println("Use JD-GUI or CFR to view decompiled .class file");
+    }
+
+    // 39. Reflection
+    static void reflectionExample() throws Exception {
+        Class<?> cls = Class.forName("java.lang.String");
+        for (Method m : cls.getDeclaredMethods()) {
+            System.out.println(m.getName());
+        }
+    }
+
+    // 40. Virtual Threads (Java 21)
+    static void virtualThreadsExample() {
+        for (int i = 0; i < 100_000; i++) {
+            Thread.startVirtualThread(() -> System.out.println("Hello from virtual thread"));
+        }
+    }
+
+    // 41. ExecutorService and Callable
+    static void executorExample() throws Exception {
+        ExecutorService executor = Executors.newFixedThreadPool(3);
+        List<Callable<String>> tasks = List.of(
+            () -> "Task 1", () -> "Task 2", () -> "Task 3"
+        );
+        List<Future<String>> results = executor.invokeAll(tasks);
+        for (Future<String> f : results) System.out.println(f.get());
+        executor.shutdown();
+    }
+}
+
+}
