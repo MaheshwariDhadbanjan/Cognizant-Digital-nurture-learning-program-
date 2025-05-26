@@ -1,0 +1,9 @@
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+  <p>Centered Content</p>
+</div>
+
+
+<div class="row">
+  <div class="col-md-6 order-md-2">Second</div>
+  <div class="col-md-6 order-md-1">First</div>
+</div>
