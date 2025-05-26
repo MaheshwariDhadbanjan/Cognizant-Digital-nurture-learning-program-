@@ -1,0 +1,14 @@
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $('#registerBtn').click(() => {
+    alert('Registered via jQuery!');
+  });
+
+  $('.eventCard').fadeIn();
+
+  setTimeout(() => $('.eventCard').fadeOut(), 2000);
+</script>
+
+<!-- Benefit of React/Vue -->
+<!-- Components, reactivity, virtual DOM make large-scale UI faster and more maintainable -->
