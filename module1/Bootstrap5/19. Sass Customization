@@ -1,0 +1,3 @@
+// _variables.scss
+$primary: #ff6347;
+$border-radius: 0.5rem;
