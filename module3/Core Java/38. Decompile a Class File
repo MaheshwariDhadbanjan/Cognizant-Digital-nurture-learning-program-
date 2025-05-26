@@ -1,0 +1,7 @@
+public class SampleDecompile {
+    public static void main(String[] args) {
+        System.out.println("Decompile me!");
+    }
+}
+
+// Compile to .class and open in JD-GUI
