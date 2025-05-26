@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Local Community Event Portal</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        nav a { margin: 0 10px; }
+        #welcomeBanner {
+            background-color: lightblue;
+            padding: 10px;
+            text-align: center;
+        }
+        .highlight {
+            background-color: yellow;
+            font-weight: bold;
+        }
+        .event-img {
+            border: 2px solid #000;
+            width: 100px;
+            height: auto;
+        }
+        form {
+            width: 300px;
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #aaa;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#home">Home</a> |
+        <a href="#events">Events</a> |
+        <a href="#contact">Contact</a> |
+        <a href="help.html" target="_blank">Help</a>
+    </nav>
+
+    <!-- Welcome Banner -->
+    <div id="welcomeBanner">
+        Welcome, user! <span style="color: red; font-weight: bold;">Special offer: Free Entry!</span>
+    </div>
+    <p class="highlight">Don't miss our biggest community event this year!</p>
+
+    <!-- Home Section -->
+    <section id="home">
+        <h2>Home Section</h2>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events">
+        <h2>Events Section</h2>
+
+        <!-- Image Gallery -->
+        <table border="1">
+            <caption>Community Events Gallery</caption>
+            <tr>
+                <td><img src="event1.jpg" alt="Event 1" title="Music Fest" class="event-img"></td>
+                <td><img src="event2.jpg" alt="Event 2" title="Food Carnival" class="event-img"></td>
+                <td><img src="event3.jpg" alt="Event 3" title="Tech Meetup" class="event-img"></td>
+            </tr>
+            <tr>
+                <td><img src="event4.jpg" alt="Event 4" title="Art Expo" class="event-img"></td>
+                <td><img src="event5.jpg" alt="Event 5" title="Book Fair" class="event-img"></td>
+                <td><img src="event6.jpg" alt="Event 6" title="Kids Day" class="event-img"></td>
+            </tr>
+        </table>
+
+        <!-- Registration Form -->
+        <form onsubmit="showConfirmation(event)">
+            <label>Name: <input type="text" name="name" placeholder="Enter your name" required autofocus></label>
+            <label>Email: <input type="email" name="email" placeholder="Enter your email" required></label>
+            <label>Date: <input type="date" name="date" required></label>
+            <label>Event Type:
+                <select name="eventType" required>
+                    <option value="">Select</option>
+                    <option value="Music">Music</option>
+                    <option value="Tech">Tech</option>
+                    <option value="Food">Food</option>
+                </select>
+            </label>
+            <label>Message:
+                <textarea name="message" placeholder="Any special requests?"></textarea>
+            </label>
+            <button type="submit">Register</button>
+            <output id="confirmation"></output>
+        </form>
+
+        <!-- Feedback Events -->
+        <p>Phone Number: <input type="text" id="phone" onblur="validatePhone()"></p>
+        <p>Select Event Type:
+            <select onchange="displayFee(this.value)">
+                <option value="">--Choose--</option>
+                <option value="Music">Music</option>
+                <option value="Tech">Tech</option>
+            </select>
+        </p>
+        <p id="fee"></p>
+        <button onclick="alert('Feedback Submitted!')">Submit</button>
+        <p><img src="event.jpg" width="100" ondblclick="enlarge(this)"></p>
+        <p>Feedback:
+            <textarea id="feedback" onkeyup="countChars()" rows="4" cols="30"></textarea><br>
+            <span id="charCount">0 characters</span>
+        </p>
+
+        <!-- Video Invite -->
+        <video width="320" controls oncanplay="videoReady()">
+            <source src="invite.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <p id="videoMsg"></p>
+
+        <!-- Preferences -->
+        <label>Preferred Event:
+            <select id="eventSelect" onchange="savePreference()">
+                <option value="">Choose</option>
+                <option value="Music">Music</option>
+                <option value="Tech">Tech</option>
+            </select>
+        </label>
+        <button onclick="clearPreferences()">Clear Preferences</button>
+
+        <!-- Geolocation -->
+        <button onclick="findLocation()">Find Nearby Events</button>
+        <p id="location"></p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Section</h2>
+        <button onclick="testDebug()">Click Me</button>
+    </section>
+
+    <!-- Scripts -->
+    <script>
+        function showConfirmation(event) {
+            event.preventDefault();
+            document.getElementById("confirmation").textContent = "Registration successful!";
+        }
+
+        function validatePhone() {
+            const phone = document.getElementById("phone").value;
+            if (!/^\\d{10}$/.test(phone)) {
+                alert("Please enter a valid 10-digit phone number.");
+            }
+        }
+
+        function displayFee(value) {
+            const fee = value === "Music" ? "₹100" : "₹150";
+            document.getElementById("fee").textContent = "Fee: " + fee;
+        }
+
+        function enlarge(img) {
+            img.style.width = "200px";
+        }
+
+        function countChars() {
+            const len = document.getElementById("feedback").value.length;
+            document.getElementById("charCount").textContent = len + " characters";
+        }
+
+        function videoReady() {
+            document.getElementById("videoMsg").textContent = "Video ready to play!";
+        }
+
+        window.onbeforeunload = function() {
+            return "Are you sure you want to leave? Your form may be incomplete.";
+        }
+
+        function savePreference() {
+            const event = document.getElementById("eventSelect").value;
+            localStorage.setItem("preferredEvent", event);
+        }
+
+        window.onload = function() {
+            const saved = localStorage.getItem("preferredEvent");
+            if (saved) {
+                document.getElementById("eventSelect").value = saved;
+            }
+        }
+
+        function clearPreferences() {
+            localStorage.clear();
+            sessionStorage.clear();
+            alert("Preferences cleared.");
+        }
+
+        function findLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError, {
+                    enableHighAccuracy: true,
+                    timeout: 10000
+                });
+            } else {
+                document.getElementById("location").textContent = "Geolocation not supported.";
+            }
+        }
+
+        function showPosition(position) {
+            document.getElementById("location").textContent =
+                "Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude;
+        }
+
+        function showError(error) {
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("User denied the request.");
+                    break;
+                case error.TIMEOUT:
+                    alert("Request timed out.");
+                    break;
+                default:
+                    alert("An unknown error occurred.");
+            }
+        }
+
+        let count = 0;
+        function testDebug() {
+            count++;
+            console.log("Button clicked", count);
+        }
+    </script>
+
+</body>
+</html>
