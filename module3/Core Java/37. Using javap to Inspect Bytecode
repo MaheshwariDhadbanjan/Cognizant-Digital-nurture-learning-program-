@@ -1,0 +1,8 @@
+public class HelloBytecode {
+    public static void sayHello() {
+        System.out.println("Bytecode test");
+    }
+}
+
+// Compile & run: javac HelloBytecode.java
+// Inspect: javap -c HelloBytecode
