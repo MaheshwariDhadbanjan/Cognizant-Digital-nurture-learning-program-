@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Event Portal</title>
+
+  <!-- Internal CSS -->
+  <style>
+    body {
+      background-color: #f4f4f4;
+    }
+  </style>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Inline CSS -->
+  <h1 style="color: red;">Welcome to the Portal</h1>
+
+  <h2 id="mainHeader">Upcoming Events</h2>
+
+  <div class="eventCard">
+    <h3>Music Night</h3>
+    <p>Enjoy live performances in your neighborhood.</p>
+  </div>
+
+</body>
+</html>
+
+
+
+
+/* Header styles */
+#mainHeader {
+  color: navy;
+  font-size: 24px;
+}
+
+/* Card styles */
+.eventCard {
+  background-color: #fff;
+  padding: 15px;
+  margin: 10px;
+  border: 1px solid #ccc;
+}
