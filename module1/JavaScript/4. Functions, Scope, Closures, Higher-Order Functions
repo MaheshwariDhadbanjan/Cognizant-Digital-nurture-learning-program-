@@ -1,0 +1,24 @@
+function addEvent(events, event) {
+  events.push(event);
+}
+
+function registerUser(event) {
+  if (event.seats > 0) {
+    event.seats--;
+    return true;
+  }
+  return false;
+}
+
+function filterEventsByCategory(events, category) {
+  return events.filter(e => e.category === category);
+}
+
+function categoryTracker() {
+  let count = 0;
+  return () => ++count;
+}
+
+function searchEvents(events, callback) {
+  return events.filter(callback);
+}
