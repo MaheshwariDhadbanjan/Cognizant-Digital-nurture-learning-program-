@@ -1,0 +1,66 @@
+import java.util.*;
+
+public class ArrayListExample {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        List<String> names = new ArrayList<>();
+        System.out.println("Enter names (type 'end' to stop):");
+
+        while (true) {
+            String name = sc.nextLine();
+            if (name.equalsIgnoreCase("end")) break;
+            names.add(name);
+        }
+
+        System.out.println("Student Names: " + names);
+    }
+}
+
+
+
+import java.util.*;
+
+public class HashMapExample {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Map<Integer, String> map = new HashMap<>();
+        System.out.println("Enter ID and name (0 to stop):");
+
+        while (true) {
+            int id = sc.nextInt();
+            if (id == 0) break;
+            String name = sc.next();
+            map.put(id, name);
+        }
+
+        System.out.print("Enter ID to search: ");
+        int searchId = sc.nextInt();
+        System.out.println("Name: " + map.getOrDefault(searchId, "Not found"));
+    }
+}
+
+
+
+class MyThread extends Thread {
+    String message;
+
+    MyThread(String msg) {
+        this.message = msg;
+    }
+
+    public void run() {
+        for (int i = 0; i < 5; i++) {
+            System.out.println(message);
+        }
+    }
+}
+
+public class ThreadExample {
+    public static void main(String[] args) {
+        MyThread t1 = new MyThread("Thread 1");
+        MyThread t2 = new MyThread("Thread 2");
+
+        t1.start();
+        t2.start();
+    }
+}
