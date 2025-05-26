@@ -1,0 +1,8 @@
+function debugFormSubmission(data) {
+  console.log("Submitting form", data);
+  debugger;
+  fetch("/api/register", {
+    method: "POST",
+    body: JSON.stringify(data)
+  }).then(r => console.log(r));
+}
