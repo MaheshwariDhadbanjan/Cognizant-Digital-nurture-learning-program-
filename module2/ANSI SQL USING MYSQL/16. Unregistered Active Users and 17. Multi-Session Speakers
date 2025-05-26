@@ -1,0 +1,12 @@
+SELECT *
+FROM Users
+WHERE registration_date >= CURRENT_DATE - INTERVAL 30 DAY
+AND user_id NOT IN (
+    SELECT DISTINCT user_id FROM Registrations
+);
+
+
+SELECT speaker_name, COUNT(*) AS session_count
+FROM Sessions
+GROUP BY speaker_name
+HAVING COUNT(*) > 1;
