@@ -1,0 +1,2 @@
+<img src="pic.jpg" class="border border-primary border-3 rounded-circle" width="100">
+<div class="card shadow-lg rounded-pill">Shadow Card</div>
