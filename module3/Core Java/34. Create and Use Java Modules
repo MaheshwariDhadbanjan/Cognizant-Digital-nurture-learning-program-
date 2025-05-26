@@ -1,0 +1,17 @@
+// In com.utils module
+module com.utils {
+    exports com.utils;
+}
+
+// In com.utils package
+package com.utils;
+public class Util {
+    public static void greet() {
+        System.out.println("Hello from Utils!");
+    }
+}
+
+// In com.greetings module
+module com.greetings {
+    requires com.utils;
+}
