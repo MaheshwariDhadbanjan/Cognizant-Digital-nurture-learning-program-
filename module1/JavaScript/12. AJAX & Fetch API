@@ -1,0 +1,13 @@
+function submitRegistration(user) {
+  console.log("Submitting...");
+  setTimeout(() => {
+    fetch("https://mockapi.io/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(user)
+    })
+    .then(res => res.json())
+    .then(data => alert("Success!"))
+    .catch(err => alert("Failed!"));
+  }, 1000);
+}
