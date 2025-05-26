@@ -1,0 +1,5 @@
+const showEvent = ({ name, date }) => {
+  console.log(`Event: ${name} on ${date}`);
+};
+
+const allEvents = [...events]; // Clone array
