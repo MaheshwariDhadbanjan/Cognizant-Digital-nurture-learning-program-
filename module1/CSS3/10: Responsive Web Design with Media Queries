@@ -1,0 +1,21 @@
+/* Base layout */
+.nav-links {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* Responsive changes for mobile */
+@media screen and (max-width: 768px) {
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  body {
+    font-size: 14px;
+  }
+}
