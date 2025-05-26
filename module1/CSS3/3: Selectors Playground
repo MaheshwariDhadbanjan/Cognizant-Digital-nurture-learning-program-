@@ -1,0 +1,31 @@
+/* Universal Selector */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Element Selector */
+h2 {
+  color: darkblue;
+  font-size: 22px;
+}
+
+/* ID Selector */
+#mainHeader {
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Class Selector */
+.eventCard {
+  background-color: #f9f9f9;
+  padding: 15px;
+  margin: 10px;
+  border: 1px solid #aaa;
+}
+
+/* Grouping Selector */
+h3, p {
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+}
