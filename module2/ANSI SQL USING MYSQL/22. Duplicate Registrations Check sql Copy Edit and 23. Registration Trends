@@ -1,0 +1,11 @@
+SELECT user_id, event_id, COUNT(*) AS reg_count
+FROM Registrations
+GROUP BY user_id, event_id
+HAVING COUNT(*) > 1;
+
+
+SELECT DATE_FORMAT(registration_date, '%Y-%m') AS month, COUNT(*) AS total
+FROM Registrations
+WHERE registration_date >= CURRENT_DATE - INTERVAL 12 MONTH
+GROUP BY month
+ORDER BY month;
